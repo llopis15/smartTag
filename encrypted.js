@@ -15,4 +15,3 @@ const encryptPassword = async(password) => {
 };
 
 exports.encryptPassword = encryptPassword;
-//HOLA
