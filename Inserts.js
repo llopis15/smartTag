@@ -70,7 +70,19 @@ function insertShelving(shelving, level){
     })();
 }
 
+function filter(toFilter, type){
+    if(type=="barcode"){
+        exp = /A0A3B82[A-F0-9][A-F0-9][A-F0-9][A-F0-9][A-F0-9]/
+    }
+    if(type=="shelving"){
+        exp = /[A-F][A-F][A-F]/
+    }
+    return exp.test(toFilter)
+}
 exports.insertTicket = insertTicket;
 exports.insertShelving = insertShelving;
+exports.filter = filter;
+
+
 
 

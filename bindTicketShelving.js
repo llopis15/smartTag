@@ -1,8 +1,8 @@
 
-const insertJson = require('./Inserts');
+const insert = require('./Inserts');
 
 var barcode = "A0A3B820690F";
-var shelving = "ABC";
+var shelving = "ABC";///introducida por el usuario
 var collectionFk = '254';
 
 var consultaSql1 = [
@@ -35,7 +35,12 @@ var consultaSql1 = [
 function ticketCollection(){//parametro collectionFk
     /// CONSULTA SQL PER A TINDRE ELS DIFERENTS ticketsColletion DE UN colletionFK (consiltaSql1) ///
     /// CONSULTA SQL PER A CADA ticket DE CADA ticketCollection (consiltaSql2) ///
-    insertJson.insertJson(consultaSql1, shelving)
+    if(insert.filter(shelving,"shelving")){
+        insert.insertTicket(consultaSql1, shelving)
+    }
+    else{
+    console.log("¡MATRICULA INCORRECTA!")
+    }
 }
 
 ticketCollection();

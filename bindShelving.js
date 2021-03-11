@@ -31,8 +31,20 @@ function smartTag(barcode, shelving, level){
     })();
 }
 
-var barcode = "A0A3B820690F";
-var shelving = "BCD";
+///DATOS INTRODUCIDOS POR EL USUARIO////
+var barcode = "A0A3B820690F"; //valido = "A0A3B82"+ 4 CARACTERES HEXADECIMALES (0-F)
+var shelving = "BCD";   //valido = 3 CARACTERES LETRAS (A-Z)
 var level = "1";
+//////////////////////////////////////
 
-smartTag(barcode, shelving, level);
+if(insert.filter(barcode,"barcode")){
+    if(insert.filter(shelving,"shelving")){
+        smartTag(barcode, shelving, level);
+    }
+    else{
+    console.log("¡MATRICULA INCORRECTA!")
+    }
+}
+else{
+    console.log("¡CODIGO DE ETIQUETA INCORRECTO!")
+}
