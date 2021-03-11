@@ -1,5 +1,5 @@
 
-const insertJson = require('./sqlToInsert');
+const insertJson = require('./Inserts');
 
 var barcode = "A0A3B820690F";
 var shelving = "ABC";

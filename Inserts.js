@@ -1,4 +1,4 @@
-function insertJson(sql, shelving){
+function insertTicket(sql, shelving){
     const config = require('./config');
     const got = require('got');
     (async() => {
@@ -35,6 +35,40 @@ function insertJson(sql, shelving){
         })();
     })();
 }
+function insertShelving(shelving, level){
+    const config = require('./config');
+    const got = require('got');
+    (async() => {
+        const info = await config.info
+        let key = info.data.token
+        let currentUser = info.data.currentUser;
+        (async() => {
+                const { body } = await got.post('http://app.etiquetaselectronicas.com:9999/item/batchImportItem', {
+                    json: {
+                        agencyId: currentUser.agencyId,
+                        merchantId: currentUser.merchantId,
+                        storeId: currentUser.storeId,
+                        unitName: currentUser.unitName,
+                        itemList: [
+                            {
+                                attrCategory: "verdnatura",
+                                attrName: "sinTicket",
+                                barCode: shelving + level,//Matricula + nivel
+                                itemTitle: "Etiqueta Sin ticket",
+                            }
+                        ]
+                    },
+                    responseType: 'json',
+                    headers: {
+                        "Authorization": key
+                    }
+                })
+                console.log(body)
+        })();
+    })();
+}
 
-exports.insertJson = insertJson;
+exports.insertTicket = insertTicket;
+exports.insertShelving = insertShelving;
+
 
