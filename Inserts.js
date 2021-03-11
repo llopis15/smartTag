@@ -35,6 +35,8 @@ function insertTicket(sql, shelving){
         })();
     })();
 }
+
+
 function insertShelving(shelving, level){
     const config = require('./config');
     const got = require('got');
